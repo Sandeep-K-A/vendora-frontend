@@ -1,101 +1,106 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --navy: #0a0f1e;
-  --navy-2: #111827;
-  --navy-3: #1e2640;
-  --navy-4: #2d3a5c;
-  --indigo: #4f46e5;
-  --indigo-l: #6366f1;
-  --saffron: #f59e0b;
-  --saffron-l: #fcd34d;
-  --teal: #0ea5e9;
-  --green: #10b981;
-  --red: #ef4444;
-  --white: #f8fafc;
-  --white-2: #e2e8f0;
-  --muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-2: rgba(255, 255, 255, 0.14);
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  body {
+    background-color: #fafaf9;
+    color: #111110;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-body {
-  background-color: #0a0f1e;
-  color: #f8fafc;
-  font-family: "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
+  button {
+    cursor: pointer;
+    /* border: none; */
+    background: none;
+    font-family: inherit;
+  }
 }
 
 @layer utilities {
-  .font-head {
-    font-family: "Space Grotesk", sans-serif;
-  }
-  .font-body {
-    font-family: "Inter", sans-serif;
-  }
-
-  .text-display {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-  .text-h1 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-  .text-h2 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-
   .container-vendora {
-    max-width: 1160px;
+    width: 100%;
+    max-width: 1080px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    line-height: 1;
   }
 
-  .card-vendora {
-    background: var(--navy-3);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+  .btn-ghost {
+    background: transparent;
+    color: #6f6d66;
+    border: 1px solid #e0ddd6;
+  }
+  .btn-ghost:hover {
+    color: #111110;
+    border-color: #d0cec7;
+    background: #f4f3f0;
+  }
+
+  .btn-primary {
+    background: #1b4332;
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background: #2d6a4f;
+  }
+
+  .btn-gold {
+    background: #c77b35;
+    color: #ffffff;
+  }
+  .btn-gold:hover {
+    background: #f0a050;
+    transform: translateY(-1px);
+  }
+
+  .btn-lg {
+    padding: 13px 28px;
+    font-size: 15px;
+    border-radius: 10px;
   }
 }
