@@ -11,7 +11,7 @@ export default function HeroContent() {
         Now live across India
       </div>
 
-      <h1 className="font-head text-5xl lg:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-ink mb-5">
+      <h1 className="font-head text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-[-0.03em] text-ink mb-5">
         <span className="block whitespace-nowrap">The smarter way</span>
         <span className="block">
           to <span className="text-forest">buy</span> and{" "}
