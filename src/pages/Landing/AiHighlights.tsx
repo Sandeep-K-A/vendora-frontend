@@ -4,7 +4,7 @@ export default function AiHighlights() {
   return (
     <div>
       <p className="flex items-center gap-2 text-xs font-semibold text-forest-light uppercase tracking-wider mb-3">
-        <span className="w-5 h-px bg-forest-light" aria-hidden="true" />
+        <span className="w-5 h-[1.2px] bg-forest-light" aria-hidden="true" />
         AI-powered
       </p>
       <h2 className="font-head text-3xl lg:text-4xl font-bold text-white leading-tight tracking-[-0.02em] mb-3">
