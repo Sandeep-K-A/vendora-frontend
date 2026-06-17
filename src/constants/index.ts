@@ -9,6 +9,7 @@ import type {
   HowItWorksStep,
   SellerStep,
   AiSearchDemoData,
+  SellerProduct,
 } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -336,3 +337,24 @@ export const AI_SEARCH_DEMO_DATA: Record<string, AiSearchDemoData[]> = {
     },
   ],
 };
+
+export const SELLER_TOP_PRODUCTS: SellerProduct[] = [
+  {
+    icon: "📱",
+    name: "iQOO Z9 5G",
+    meta: "12 sold · In stock",
+    primaryValue: "₹14,999",
+  },
+  {
+    icon: "🎧",
+    name: "boAt Airdopes 141",
+    meta: "8 sold · In stock",
+    primaryValue: "₹1,299",
+  },
+  {
+    icon: "⌚",
+    name: "Noise ColorFit Pro 4",
+    meta: "6 sold · Low stock",
+    primaryValue: "₹2,499",
+  },
+];

@@ -62,3 +62,10 @@ export interface AiSearchDemoData {
   match: string;
   matchColor: string;
 }
+
+export interface SellerProduct {
+  icon: string;
+  name: string;
+  meta: string;
+  primaryValue: string;
+}
