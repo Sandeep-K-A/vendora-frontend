@@ -135,6 +135,24 @@ export const SELLER_FEATURES: Feature[] = [
   },
 ];
 
+export const AI_HIGHLIGHTS: Omit<Feature, "ai" | "accent">[] = [
+  {
+    icon: "🔍",
+    title: "Natural language search",
+    desc: "Type queries the way you think. Get ranked matches by intent, not keyword density.",
+  },
+  {
+    icon: "📝",
+    title: "AI product verdict",
+    desc: 'Every product page shows "Best for" and "Weak at" — no reading 40 reviews to find the dealbreaker.',
+  },
+  {
+    icon: "⚖️",
+    title: "AI comparison recommendation",
+    desc: "Compare up to 3 products. Get an AI paragraph recommending the best one for your use case.",
+  },
+];
+
 export const TESTIMONIALS: Testimonial[] = [
   {
     name: "Arjun K.",
