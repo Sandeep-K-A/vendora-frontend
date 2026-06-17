@@ -53,3 +53,12 @@ export interface SellerStep {
   title: string;
   desc: string;
 }
+
+export interface AiSearchDemoData {
+  icon: string;
+  name: string;
+  spec: string;
+  price: string;
+  match: string;
+  matchColor: string;
+}

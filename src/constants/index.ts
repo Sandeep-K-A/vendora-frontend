@@ -8,6 +8,7 @@ import type {
   ComparisonRow,
   HowItWorksStep,
   SellerStep,
+  AiSearchDemoData,
 } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -262,3 +263,76 @@ export const SELLER_STEPS: SellerStep[] = [
     desc: "Your dashboard shows revenue, orders, and top products. Update order status with one click. No spreadsheets.",
   },
 ];
+
+export const AI_SEARCH_DEMO_DATA: Record<string, AiSearchDemoData[]> = {
+  laptop: [
+    {
+      icon: "💻",
+      name: "Acer Aspire Lite 15",
+      spec: "Ryzen 5 · 16GB · 512GB SSD · 10hr",
+      price: "₹38,490",
+      match: "94%",
+      matchColor: "text-vendora-green",
+    },
+    {
+      icon: "💻",
+      name: "HP Pavilion 15",
+      spec: "i5-13th · 8GB · 512GB · FHD IPS",
+      price: "₹49,990",
+      match: "81%",
+      matchColor: "text-gold",
+    },
+    {
+      icon: "💻",
+      name: "Lenovo IdeaPad Slim 3",
+      spec: "Ryzen 3 · 8GB · 256GB · 7hr",
+      price: "₹31,990",
+      match: "73%",
+      matchColor: "text-ink-3",
+    },
+  ],
+  phone: [
+    {
+      icon: "📱",
+      name: "iQOO Z9 5G",
+      spec: "Snapdragon 7s · 6000mAh · 50MP",
+      price: "₹14,999",
+      match: "97%",
+      matchColor: "text-vendora-green",
+    },
+    {
+      icon: "📱",
+      name: "Redmi Note 13 Pro",
+      spec: "SD 7s Gen 2 · 200MP · AMOLED",
+      price: "₹17,999",
+      match: "88%",
+      matchColor: "text-vendora-green",
+    },
+    {
+      icon: "📱",
+      name: "Realme 12 Pro",
+      spec: "SD 7s · 50MP · 5000mAh",
+      price: "₹13,999",
+      match: "76%",
+      matchColor: "text-gold",
+    },
+  ],
+  default: [
+    {
+      icon: "🎧",
+      name: "boAt Rockerz 255 Pro+",
+      spec: "30hr · IPX5 · Magnetic",
+      price: "₹1,299",
+      match: "95%",
+      matchColor: "text-vendora-green",
+    },
+    {
+      icon: "🎵",
+      name: "JBL Endurance Run 2",
+      spec: "Wired · IP55 · 1-button mic",
+      price: "₹899",
+      match: "81%",
+      matchColor: "text-gold",
+    },
+  ],
+};
