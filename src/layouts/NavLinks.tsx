@@ -32,7 +32,7 @@ function NavLinks({
                 transition-all duration-150
                 ${
                   isActive
-                    ? "border-forest text-forest bg-forest-xl/30"
+                    ? "border-forest-light text-forest-light"
                     : "border-transparent text-ink-2 hover:text-ink hover:bg-bg-3"
                 }
               `}
@@ -63,8 +63,8 @@ function NavLinks({
               transition-all duration-150
               ${
                 isActive
-                  ? "text-forest bg-forest-xl/40"
-                  : "text-ink-2 hover:text-ink hover:bg-bg-3"
+                  ? "text-forest-light font-semibold"
+                  : "text-ink-2 hover:text-ink"
               }
             `}
           >

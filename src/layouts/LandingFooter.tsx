@@ -104,7 +104,7 @@ export default function LandingFooter() {
           <ul className="flex flex-col gap-2">
             <li>
               <a
-                href="https://github.com"
+                href="https://github.com/Sandeep-K-A/vendora-frontend"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-ink-2 text-sm hover:text-ink transition-colors"
@@ -114,7 +114,9 @@ export default function LandingFooter() {
             </li>
             <li>
               <a
-                href="#"
+                href="https://sandeep-k-a.github.io/sandeep_portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-ink-2 text-sm hover:text-ink transition-colors"
               >
                 Portfolio
@@ -122,7 +124,9 @@ export default function LandingFooter() {
             </li>
             <li>
               <a
-                href="#"
+                href="https://app.notion.com/p/Vendora-AI-MarketPlace-382a80183399808aa196e349c9b53a12?source=copy_link"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-ink-2 text-sm hover:text-ink transition-colors"
               >
                 SRS Document
@@ -130,7 +134,9 @@ export default function LandingFooter() {
             </li>
             <li>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/sandeep-ka-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-ink-2 text-sm hover:text-ink transition-colors"
               >
                 Contact
