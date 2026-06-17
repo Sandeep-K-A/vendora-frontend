@@ -1,3 +1,5 @@
+import ResultCard from "@/components/common/ResultCard";
+
 interface HowitWorksPreviewProps {
   activeStep: number;
 }
@@ -44,40 +46,22 @@ export default function HowItWorksPreview({
               </p>
 
               <div className="flex flex-col gap-2">
-                {/* first item */}
-                <div className="flex items-center gap-3 bg-bg-2 border border-line rounded-lg p-2.5">
-                  <span className="text-xl">🎧</span>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-ink">
-                      boAt Rockerz 255 Pro+
-                    </p>
-                    <p className="text-ink-3 text-xs">
-                      30hr · IPX5 · Bluetooth 5.0
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-semibold text-ink">₹1,299</p>
-                    <p className="text-vendora-green text-xs font-medium">
-                      95% match
-                    </p>
-                  </div>
-                </div>
-                {/* second item */}
-                <div className="flex items-center gap-3 bg-bg-2 border border-line rounded-lg p-2.5">
-                  <span className="text-xl">🎵</span>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-ink">
-                      JBL Endurance Run 2
-                    </p>
-                    <p className="text-ink-3 text-xs">
-                      Wired · IP55 · 1-button mic
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-semibold text-ink">₹899</p>
-                    <p className="text-gold text-xs font-medium">81% match</p>
-                  </div>
-                </div>
+                <ResultCard
+                  icon="🎧"
+                  name="boAt Rockerz 255 Pro+"
+                  meta="30hr · IPX5 · Bluetooth 5.0"
+                  primaryValue="₹1,299"
+                  secondaryValue="95% match"
+                  secondaryColor="text-vendora-green"
+                />
+                <ResultCard
+                  icon="🎵"
+                  name="JBL Endurance Run 2"
+                  meta="Wired · IP55 · 1-button mic"
+                  primaryValue="₹899"
+                  secondaryValue="81% match"
+                  secondaryColor="text-gold"
+                />
               </div>
             </div>
           )}
