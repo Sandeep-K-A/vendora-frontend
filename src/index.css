@@ -65,7 +65,9 @@
     transition: all 0.15s ease;
     white-space: nowrap;
     cursor: pointer;
-    border: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
     text-decoration: none;
     line-height: 1;
   }
