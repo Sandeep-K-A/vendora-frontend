@@ -1,18 +1,5 @@
 import { COMPARISON_ROWS } from "@/constants";
 
-/**
- * ComparisonSection
- *
- * Static "Why Vendora" comparison table vs Flipkart
- * and Amazon. No state, no logic — pure data render.
- *
- * Border strategy:
- *  - Outer frame: border-t on thead, border-l on first
- *    column, border-r on last column, border-b on last row
- *  - Vendora column: separate green border-l/border-r
- *    running the full height, closed with border-b on
- *    its last cell only
- */
 function renderCell(value: string | boolean, isVendora: boolean) {
   if (typeof value === "boolean") {
     return value ? (
@@ -67,20 +54,16 @@ export default function ComparisonSection() {
       <div className="overflow-x-auto">
         <table className="w-full border border-line border-separate border-spacing-0 bg-white rounded-2xl overflow-hidden">
           <thead>
-            {/* border-t on the header row = top edge of outer frame */}
             <tr>
-              {/* border-l on first column = left edge of outer frame */}
               <th className="text-left text-xs font-semibold text-ink-2 px-5 py-3.5 bg-bg-2">
                 Feature
               </th>
-              {/* Vendora header — green border-l/border-r starts here */}
               <th className="text-center text-xs font-semibold text-white px-5 py-3.5 bg-forest font-head border-l-2 border-r-2 border-forest">
                 ✦ Vendora
               </th>
               <th className="text-center text-xs font-semibold text-ink-2 px-5 py-3.5 bg-bg-2">
                 Flipkart
               </th>
-              {/* border-r on last column = right edge of outer frame */}
               <th className="text-center text-xs font-semibold text-ink-2 px-5 py-3.5 bg-bg-2">
                 Amazon
               </th>
