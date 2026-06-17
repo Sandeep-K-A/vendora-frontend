@@ -14,6 +14,7 @@ function NavLinks({
 }: NavLinksProps) {
   if (mobile) {
     return (
+      // MobileNavigation
       <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
         {NAV_LINKS.map((link) => {
           const sectionId = link.href.replace("#", "");
@@ -46,6 +47,7 @@ function NavLinks({
   }
 
   return (
+    // MainNavigation
     <nav className="flex items-center gap-1" aria-label="Main navigation">
       {NAV_LINKS.map((link) => {
         const sectionId = link.href.replace("#", "");
