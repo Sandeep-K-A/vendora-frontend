@@ -69,3 +69,9 @@ export interface SellerProduct {
   meta: string;
   primaryValue: string;
 }
+
+export interface DashboardStat {
+  value: string;
+  label: string;
+  valueColor?: string;
+}

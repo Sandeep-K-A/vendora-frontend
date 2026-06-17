@@ -10,6 +10,7 @@ import type {
   SellerStep,
   AiSearchDemoData,
   SellerProduct,
+  DashboardStat,
 } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -357,4 +358,11 @@ export const SELLER_TOP_PRODUCTS: SellerProduct[] = [
     meta: "6 sold · Low stock",
     primaryValue: "₹2,499",
   },
+];
+
+export const SELLER_DASHBOARD_STATS: DashboardStat[] = [
+  { value: "₹28,400", label: "Revenue this month", valueColor: "text-gold" },
+  { value: "14", label: "Orders today", valueColor: "text-forest" },
+  { value: "23", label: "Active listings" },
+  { value: "4.8 ★", label: "Store rating" },
 ];
