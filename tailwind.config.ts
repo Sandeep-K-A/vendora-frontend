@@ -42,6 +42,22 @@ const config: Config = {
         vendora: {
           green: "#22C55E",
         },
+        teal: {
+          DEFAULT: "#3B8C8C",
+          light: "#5BA8A8",
+        },
+        purple: {
+          DEFAULT: "#6B5B95",
+          light: "#8B7BB5",
+        },
+        sky: {
+          DEFAULT: "#3B82C4",
+          light: "#5B9BD6",
+        },
+        rose: {
+          DEFAULT: "#B5566B",
+          light: "#C97E8F",
+        },
       },
       backgroundImage: {
         "product-placeholder":
