@@ -24,6 +24,7 @@ export interface Feature {
   title: string;
   desc: string;
   ai: boolean;
+  accent: "green" | "gold" | "teal" | "purple" | "sky" | "rose";
 }
 
 export interface Testimonial {
