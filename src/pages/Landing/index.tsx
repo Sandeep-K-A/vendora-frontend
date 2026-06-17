@@ -9,6 +9,7 @@ import AiSection from "./AiSection";
 import SellerSection from "./SellerSection";
 import ComparisonSection from "./ComparisonSection";
 import TestimonialSection from "./TestimonialSection";
+import CtaSection from "./CtaSection";
 
 export default function Landing() {
   return (
@@ -26,6 +27,7 @@ export default function Landing() {
         <SellerSection />
         <ComparisonSection />
         <TestimonialSection />
+        <CtaSection />
       </main>
     </>
   );
