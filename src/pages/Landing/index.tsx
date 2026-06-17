@@ -3,6 +3,7 @@ import HeroSection from "./HeroSection";
 import MarqueeSection from "./MarqueeSection";
 import StatsSection from "./StatsSection";
 import HowItWorksSection from "./HowItWorksSection";
+import FeaturesSection from "./FeaturesSection";
 
 export default function Landing() {
   return (
@@ -14,6 +15,7 @@ export default function Landing() {
         <MarqueeSection />
         <StatsSection />
         <HowItWorksSection />
+        <FeaturesSection />
       </main>
     </>
   );
