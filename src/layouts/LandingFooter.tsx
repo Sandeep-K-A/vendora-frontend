@@ -151,8 +151,7 @@ export default function LandingFooter() {
           © 2024 Vendora. Built as a portfolio project.
         </p>
         <p className="text-ink-3 text-xs">
-          Built by <span className="text-forest font-medium">Sandeep K A</span>{" "}
-          · Brototype, Ernakulam
+          Built by <span className="text-forest font-medium">Sandeep K A·</span>
         </p>
       </div>
     </footer>
