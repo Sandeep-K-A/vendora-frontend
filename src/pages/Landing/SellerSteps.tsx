@@ -1,4 +1,5 @@
 import { SELLER_STEPS } from "@/constants";
+import { Link } from "react-router-dom";
 
 export default function SellerSteps() {
   return (
@@ -19,9 +20,12 @@ export default function SellerSteps() {
         gives you a professional storefront without the platform tax.
       </p>
 
-      <button className="btn btn-primary btn-lg mb-2">
+      <Link
+        to="/register?intent=seller"
+        className="btn btn-primary btn-lg mb-2"
+      >
         Create your store free →
-      </button>
+      </Link>
 
       <div className="flex flex-col mt-6">
         {SELLER_STEPS.map((item, i) => (

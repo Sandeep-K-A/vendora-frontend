@@ -1,4 +1,5 @@
 import { CATEGORIES } from "@/constants";
+import { Link } from "react-router-dom";
 
 export default function CategoriesSection() {
   return (
@@ -25,9 +26,9 @@ export default function CategoriesSection() {
             what you need.
           </h2>
         </div>
-        <button className="btn btn-ghost hidden sm:inline-flex">
+        <Link to="/products" className="btn btn-ghost hidden sm:inline-flex">
           View all →
-        </button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">

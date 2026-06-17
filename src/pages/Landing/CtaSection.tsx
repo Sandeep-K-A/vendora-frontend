@@ -32,7 +32,7 @@ export default function CtaSection() {
               Browse products free →
             </Link>
             <Link
-              to="/seller/register"
+              to="/register?intent=seller"
               className="btn btn-lg w-full sm:w-auto border border-white/30 text-white hover:bg-white/[0.06] hover:border-white/75"
             >
               Start selling free →
