@@ -27,6 +27,8 @@ export interface Feature {
   accent: "green" | "gold" | "teal" | "purple" | "sky" | "rose";
 }
 
+export type PanelFeature = Omit<Feature, "ai" | "accent">;
+
 export interface Testimonial {
   name: string;
   role: string;
@@ -74,4 +76,9 @@ export interface DashboardStat {
   value: string;
   label: string;
   valueColor?: string;
+}
+
+export interface Requirement {
+  label: string;
+  test: (value: string) => boolean;
 }
