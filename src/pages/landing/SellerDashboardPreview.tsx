@@ -46,7 +46,7 @@ export default function SellerDashboardPreview() {
           ))}
         </div>
 
-        {/* AI generate button */}
+        {/* AI generation button */}
         <button className="w-full bg-forest-xl/60 text-forest text-xs font-semibold py-2.5 rounded-lg hover:bg-forest-xl/90 transition-colors duration-150">
           ✦ Generate AI product description
         </button>

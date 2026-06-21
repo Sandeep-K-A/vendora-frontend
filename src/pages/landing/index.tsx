@@ -13,6 +13,7 @@ import CtaSection from "./CtaSection";
 export default function Landing() {
   return (
     <>
+      {/* main section */}
       <main>
         <HeroSection />
         <MarqueeSection />
