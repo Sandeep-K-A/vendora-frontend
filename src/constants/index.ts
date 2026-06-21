@@ -4,6 +4,7 @@ import type {
   Category,
   MarqueeItem,
   Feature,
+  PanelFeature,
   Testimonial,
   ComparisonRow,
   HowItWorksStep,
@@ -365,4 +366,45 @@ export const SELLER_DASHBOARD_STATS: DashboardStat[] = [
   { value: "14", label: "Orders today", valueColor: "text-forest" },
   { value: "23", label: "Active listings" },
   { value: "4.8 ★", label: "Store rating" },
+];
+
+export const REGISTER_FEATURES: PanelFeature[] = [
+  {
+    icon: "✦",
+    title: "AI-powered search",
+    desc: "Find what you need in plain language — our AI understands intent, not just keywords.",
+  },
+  {
+    icon: "🏪",
+    title: "Verified seller storefronts",
+    desc: "Know exactly who you're buying from before you add anything to your cart.",
+  },
+  {
+    icon: "0%",
+    title: "Zero commission for sellers",
+    desc: "List products, make sales, keep 100% of every rupee. No hidden platform fees.",
+  },
+  {
+    icon: "⚖️",
+    title: "Honest AI verdicts",
+    desc: '"Best for / Weak at" on every product — no reading 40 reviews to find the catch.',
+  },
+];
+
+export const LOGIN_FEATURES: PanelFeature[] = [
+  {
+    icon: "✦",
+    title: "AI-powered search",
+    desc: "Describe what you need in plain language — our AI finds the best matches instantly.",
+  },
+  {
+    icon: "⚖️",
+    title: "Smart comparison",
+    desc: "Compare products side by side. AI tells you which one fits your needs best.",
+  },
+  {
+    icon: "🏪",
+    title: "Verified seller storefronts",
+    desc: "Know exactly who you're buying from before you add anything to your cart.",
+  },
 ];
