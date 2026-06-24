@@ -5,19 +5,6 @@ interface StoreCardProps {
   onClick?: (id: string) => void;
 }
 
-/**
- * StoreCard
- *
- * Reusable seller store card used on:
- *  - Buyer home page stores section (3-column grid)
- *  - Dedicated stores listing page
- *  - Seller profile teaser in search results
- *
- * Purely presentational — all data via props.
- * Hover reveals a forest green gradient underline
- * that scales in from left — a deliberate visual detail
- * that reinforces the Vendora brand color on interaction.
- */
 export default function StoreCard({ store, onClick }: StoreCardProps) {
   return (
     <div
