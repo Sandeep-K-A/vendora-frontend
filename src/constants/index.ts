@@ -12,6 +12,10 @@ import type {
   AiSearchDemoData,
   SellerProduct,
   DashboardStat,
+  Product,
+  Store,
+  SearchResult,
+  FooterLinks,
 } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -29,11 +33,26 @@ export const STATS: Stat[] = [
 ];
 
 export const CATEGORIES: Category[] = [
-  { icon: "📱", name: "Electronics", count: "4,200+ items" },
-  { icon: "👗", name: "Fashion", count: "3,100+ items" },
-  { icon: "🏠", name: "Home & Kitchen", count: "2,800+ items" },
-  { icon: "📚", name: "Books", count: "1,500+ items" },
-  { icon: "⚽", name: "Sports", count: "900+ items" },
+  {
+    icon: "📱",
+    name: "Electronics",
+    count: "4,200+ items",
+    to: "/category/electronics",
+  },
+  {
+    icon: "👗",
+    name: "Fashion",
+    count: "3,100+ items",
+    to: "/category/fashion",
+  },
+  {
+    icon: "🏠",
+    name: "Home & Kitchen",
+    count: "2,800+ items",
+    to: "/category/home-kitchen",
+  },
+  { icon: "📚", name: "Books", count: "1,500+ items", to: "/category/books" },
+  { icon: "⚽", name: "Sports", count: "900+ items", to: "/category/sports" },
 ];
 
 export const MARQUEE_ITEMS: MarqueeItem[] = [
@@ -406,5 +425,550 @@ export const LOGIN_FEATURES: PanelFeature[] = [
     icon: "🏪",
     title: "Verified seller storefronts",
     desc: "Know exactly who you're buying from before you add anything to your cart.",
+  },
+];
+
+export const MOCK_PRODUCTS: Product[] = [
+  {
+    id: "1",
+    brand: "iQOO",
+    name: "Z9 5G — 8GB+256GB · Dimensity 7200 · 5000mAh · 50MP OIS",
+    price: "₹18,404",
+    oldPrice: "₹19,999",
+    discount: "8% OFF",
+    rating: 4,
+    reviewCount: "(3.2k)",
+    imageBg: "#EAF3FB",
+    image: "https://fdn2.gsmarena.com/vv/pics/vivo/vivo-iqoo-z9-1.jpg",
+    sellerName: "TechZone Store · Kochi",
+    category: "electronics",
+  },
+  {
+    id: "2",
+    brand: "Acer",
+    name: "Aspire Lite 15 Ryzen 5 · 16GB · 512GB SSD",
+    price: "₹38,490",
+    oldPrice: "₹45,000",
+    discount: "15% OFF",
+    rating: 5,
+    reviewCount: "(892)",
+    imageBg: "#E8F7EF",
+    image: "💻",
+    sellerName: "DigiMart · Bangalore",
+    category: "electronics",
+  },
+  {
+    id: "3",
+    brand: "boAt",
+    name: "Rockerz 255 Pro+ Neckband Earphones",
+    price: "₹1,299",
+    oldPrice: "₹2,499",
+    discount: "48% OFF",
+    rating: 4,
+    reviewCount: "(4.1k)",
+    imageBg: "#FFF4E8",
+    image: "🎧",
+    category: "electronics",
+  },
+  {
+    id: "4",
+    brand: "Noise",
+    name: "ColorFit Pro 4 AMOLED Smartwatch",
+    price: "₹2,499",
+    oldPrice: "₹3,999",
+    discount: "38% OFF",
+    rating: 4,
+    reviewCount: "(2.8k)",
+    imageBg: "#F0EBFA",
+    image: "⌚",
+    sellerName: "GadgetWorld · Delhi",
+    category: "electronics",
+  },
+  {
+    id: "5",
+    brand: "Canon",
+    name: "EOS 1500D 24.1MP DSLR Camera",
+    price: "₹29,990",
+    oldPrice: "₹34,995",
+    rating: 5,
+    reviewCount: "(3.4k)",
+    imageBg: "#E8F7EF",
+    image: "📷",
+    category: "electronics",
+  },
+  {
+    id: "6",
+    brand: "Campus",
+    name: "Running Shoes — Men · Sizes 7–11",
+    price: "₹1,399",
+    oldPrice: "₹1,999",
+    discount: "30% OFF",
+    rating: 4,
+    reviewCount: "(783)",
+    imageBg: "#FFF4E8",
+    image: "👟",
+    sellerName: "FashionFirst · Jaipur",
+    category: "sports",
+  },
+  {
+    id: "7",
+    brand: "James Clear",
+    name: "Atomic Habits — Paperback",
+    price: "₹349",
+    oldPrice: "₹499",
+    discount: "30% OFF",
+    rating: 5,
+    reviewCount: "(12k)",
+    imageBg: "#F0EBFA",
+    image: "📚",
+    sellerName: "BookNook · Delhi",
+    category: "books",
+  },
+  {
+    id: "8",
+    brand: "Prestige",
+    name: "Induction Cooktop 2000W · 8 Presets",
+    price: "₹2,799",
+    oldPrice: "₹3,499",
+    discount: "19% OFF",
+    rating: 4,
+    reviewCount: "(1.8k)",
+    imageBg: "#E2F5F4",
+    image: "🍳",
+    category: "home-kitchen",
+  },
+];
+
+export const MOCK_STORES: Store[] = [
+  {
+    id: "s1",
+    name: "TechZone Store",
+    initials: "TZ",
+    avatarBg: "#E8F7EF",
+    avatarColor: "#1B4332",
+    location: "Kochi, Kerala",
+    productCount: 23,
+    tags: ["Electronics", "Mobiles", "Laptops"],
+    isVerified: true,
+    topProduct: {
+      name: "iQOO Z9 5G",
+      price: "₹18,404",
+      image:
+        "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=100&q=80&fit=crop",
+    },
+  },
+  {
+    id: "s2",
+    name: "FashionFirst Jaipur",
+    initials: "FF",
+    avatarBg: "#FFF4E8",
+    avatarColor: "#9A560D",
+    location: "Jaipur, Rajasthan",
+    productCount: 47,
+    tags: ["Fashion", "Clothing", "Footwear"],
+    isVerified: true,
+    topProduct: {
+      name: "Women's Floral Kurta Set",
+      price: "₹1,199",
+      image:
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=100&q=80&fit=crop",
+    },
+  },
+  {
+    id: "s3",
+    name: "BookNook Delhi",
+    initials: "BN",
+    avatarBg: "#F0EBFA",
+    avatarColor: "#6B46A8",
+    location: "Delhi, NCR",
+    productCount: 134,
+    tags: ["Books", "Academic", "Fiction"],
+    isVerified: true,
+    topProduct: {
+      name: "Atomic Habits",
+      price: "₹349",
+      image:
+        "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=100&q=80&fit=crop",
+    },
+  },
+];
+
+export const MOCK_RESULTS: SearchResult[] = [
+  {
+    id: "1",
+    name: "Acer Aspire Lite 15",
+    spec: "Ryzen 5 · 16GB · 512GB · 10hr battery",
+    price: "₹38,490",
+    matchScore: 94,
+    image: "💻",
+    imageBg: "#E8F7EF",
+  },
+  {
+    id: "2",
+    name: "HP Pavilion 15",
+    spec: "i5-13th · 8GB · 512GB · FHD",
+    price: "₹49,990",
+    matchScore: 78,
+    image: "💻",
+    imageBg: "#EAF3FB",
+  },
+  {
+    id: "3",
+    name: "Lenovo IdeaPad Slim 3",
+    spec: "Ryzen 3 · 8GB · 256GB",
+    price: "₹31,990",
+    matchScore: 65,
+    image: "💻",
+    imageBg: "#F0EBFA",
+  },
+];
+
+export const FOOTER_LINKS: FooterLinks = {
+  Shop: [
+    { label: "Electronics", to: "/category/electronics" },
+    { label: "Fashion", to: "/category/fashion" },
+    { label: "Home & Kitchen", to: "/category/home-kitchen" },
+    { label: "Books", to: "/category/books" },
+    { label: "Sports", to: "/category/sports" },
+  ],
+  Sell: [
+    { label: "Start selling", to: "/seller/onboarding" },
+    { label: "Seller dashboard", to: "/seller/dashboard" },
+    { label: "How it works", to: "/how-it-works" },
+    { label: "Seller guide", to: "/seller/guide" },
+  ],
+  Account: [
+    { label: "My orders", to: "/orders" },
+    { label: "Profile", to: "/profile" },
+    { label: "Settings", to: "/settings" },
+  ],
+};
+
+export const HERO_DISPLAY = [
+  {
+    id: "electronics",
+    label: "Electronics",
+    tagline: "Smart tech.",
+    tagline2: "Real prices.",
+    cta: "Browse Electronics",
+    to: "/category/electronics",
+    accent: "#52B788",
+    accentBg: "rgba(82,183,136,0.15)",
+    product: {
+      name: "iPhone 17 Pro",
+      brand: "Apple",
+      price: "₹18,404",
+      oldPrice: "₹19,999",
+      discount: "8% OFF",
+      // White iPhone 17 on dark surface
+      image:
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80&fit=crop",
+    },
+    bestseller: {
+      name: 'MacBook Pro 14"',
+      price: "₹1,99,999",
+      orders: 1240,
+      demand: 82,
+      // iPhone dark background — clean phone shot
+      image:
+        "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=200&q=80&fit=crop",
+    },
+    newArrival: {
+      name: "Samsung Galaxy S24",
+      brand: "Samsung",
+      price: "₹2,499",
+      // Black iPhone on dark background
+      image:
+        "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=200&q=80&fit=crop",
+      seller: "GadgetWorld · Delhi",
+    },
+  },
+  {
+    id: "fashion",
+    label: "Fashion",
+    tagline: "Style that's",
+    tagline2: "authentically yours.",
+    cta: "Browse Fashion",
+    to: "/category/fashion",
+    accent: "#F0A050",
+    accentBg: "rgba(240,160,80,0.15)",
+    product: {
+      name: "Women's Floral Kurta Set",
+      brand: "FashionFirst",
+      price: "₹1,199",
+      oldPrice: "₹1,799",
+      discount: "33% OFF",
+      // Colorful clothing rack
+      image:
+        "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80&fit=crop",
+    },
+    bestseller: {
+      name: "Campus Running Shoes",
+      price: "₹1,399",
+      orders: 980,
+      demand: 74,
+      // Assorted clothes on rack
+      image:
+        "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=200&q=80&fit=crop",
+    },
+    newArrival: {
+      name: "Men's Slim Fit Oxford Shirt",
+      brand: "StyleHub",
+      price: "₹799",
+      // Colorful shirts on rack
+      image:
+        "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=200&q=80&fit=crop",
+      seller: "FashionFirst · Jaipur",
+    },
+  },
+  {
+    id: "home-kitchen",
+    label: "Home & Kitchen",
+    tagline: "Make your space",
+    tagline2: "work harder.",
+    cta: "Browse Home",
+    to: "/category/home-kitchen",
+    accent: "#5B9BD6",
+    accentBg: "rgba(91,155,214,0.15)",
+    product: {
+      name: "Prestige Induction Cooktop",
+      brand: "Prestige",
+      price: "₹2,799",
+      oldPrice: "₹3,499",
+      discount: "19% OFF",
+      // Clean modern kitchen interior
+      image:
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&fit=crop",
+    },
+    bestseller: {
+      name: "French Press Coffee Maker",
+      price: "₹899",
+      orders: 756,
+      demand: 61,
+      // Modern kitchen with wooden cabinets
+      image:
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80&fit=crop",
+    },
+    newArrival: {
+      name: "Ergonomic Office Chair",
+      brand: "FurniCraft",
+      price: "₹8,499",
+      // Kitchen interior
+      image:
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80&fit=crop",
+      seller: "HomeFirst · Pune",
+    },
+  },
+  {
+    id: "books",
+    label: "Books",
+    tagline: "The right book",
+    tagline2: "finds you here.",
+    cta: "Browse Books",
+    to: "/category/books",
+    accent: "#A07BE0",
+    accentBg: "rgba(160,123,224,0.15)",
+    product: {
+      name: "Atomic Habits",
+      brand: "James Clear",
+      price: "₹349",
+      oldPrice: "₹499",
+      discount: "30% OFF",
+      // Modern library with bookshelves
+      image:
+        "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80&fit=crop",
+    },
+    bestseller: {
+      name: "Rich Dad Poor Dad",
+      price: "₹249",
+      orders: 2100,
+      demand: 91,
+      // Stack of books in library
+      image:
+        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=200&q=80&fit=crop",
+    },
+    newArrival: {
+      name: "Deep Work — Cal Newport",
+      brand: "Cal Newport",
+      price: "₹319",
+      // Books on bookshelf
+      image:
+        "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=200&q=80&fit=crop",
+      seller: "BookNook · Delhi",
+    },
+  },
+  {
+    id: "sports",
+    label: "Sports",
+    tagline: "Train harder.",
+    tagline2: "Play better.",
+    cta: "Browse Sports",
+    to: "/category/sports",
+    accent: "#52B788",
+    accentBg: "rgba(82,183,136,0.15)",
+    product: {
+      name: "Adjustable Dumbbell Set",
+      brand: "FitPro",
+      price: "₹3,499",
+      oldPrice: "₹4,999",
+      discount: "30% OFF",
+      // Gym dumbbells dark background
+      image:
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&fit=crop",
+    },
+    bestseller: {
+      name: "Anti-slip Yoga Mat",
+      price: "₹799",
+      orders: 1560,
+      demand: 88,
+      // Dumbbells close up
+      image:
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&q=80&fit=crop",
+    },
+    newArrival: {
+      name: "Football Size 5 FIFA",
+      brand: "Cosco",
+      price: "₹849",
+      // Gym equipment
+      image:
+        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=200&q=80&fit=crop",
+      seller: "SportZone · Chennai",
+    },
+  },
+];
+
+export const BROWSE_CATEGORIES = [
+  {
+    name: "Electronics",
+    slug: "electronics",
+    count: "4,200+ products",
+    // Smartphone on dark desk — Andreas Haslinger
+    image:
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&q=80&fit=crop&crop=center",
+    overlay: "from-blue-950/80 via-blue-900/50 to-blue-800/20",
+    accent: "#93C5FD",
+  },
+  {
+    name: "Fashion",
+    slug: "fashion",
+    count: "3,100+ products",
+    // Clothing rack with colorful garments
+    image:
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80&fit=crop&crop=center",
+    overlay: "from-rose-950/80 via-rose-900/50 to-rose-800/20",
+    accent: "#FDA4AF",
+  },
+  {
+    name: "Home & Kitchen",
+    slug: "home-kitchen",
+    count: "2,800+ products",
+    // Minimal clean kitchen interior
+    image:
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop&crop=center",
+    overlay: "from-teal-950/80 via-teal-900/50 to-teal-800/20",
+    accent: "#99F6E4",
+  },
+  {
+    name: "Books",
+    slug: "books",
+    count: "1,500+ products",
+    // Stack of books warm toned
+    image:
+      "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80&fit=crop&crop=center",
+    overlay: "from-violet-950/80 via-violet-900/50 to-violet-800/20",
+    accent: "#C4B5FD",
+  },
+  {
+    name: "Sports",
+    slug: "sports",
+    count: "900+ products",
+    // Sports equipment gym weights
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&fit=crop&crop=center",
+    overlay: "from-green-950/80 via-green-900/50 to-green-800/20",
+    accent: "#6EE7B7",
+  },
+];
+
+export const TRENDING_PRODUCTS: Product[] = [
+  {
+    id: "t1",
+    brand: "iQOO",
+    name: "Z9 5G — 8GB+256GB Dimensity 7200",
+    price: "₹18,404",
+    oldPrice: "₹19,999",
+    discount: "8% OFF",
+    rating: 4,
+    reviewCount: "(3.2k)",
+    // iPhone held in hand — clean product shot
+    image:
+      "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=400&q=80&fit=crop",
+    imageBg: "#EAF3FB",
+    sellerName: "TechZone Store · Kochi",
+    category: "electronics",
+  },
+  {
+    id: "t2",
+    brand: "Campus",
+    name: "Running Shoes — Men · Sizes 7–11",
+    price: "₹1,399",
+    oldPrice: "₹1,999",
+    discount: "30% OFF",
+    rating: 4,
+    reviewCount: "(783)",
+    // White and grey sneakers clean product shot
+    image:
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80&fit=crop",
+    imageBg: "#FFF4E8",
+    sellerName: "SportZone · Chennai",
+    category: "sports",
+  },
+  {
+    id: "t3",
+    brand: "James Clear",
+    name: "Atomic Habits — Paperback",
+    price: "₹349",
+    oldPrice: "₹499",
+    discount: "30% OFF",
+    rating: 5,
+    reviewCount: "(12k)",
+    // Open book pages — warm toned
+    image:
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80&fit=crop",
+    imageBg: "#F0EBFA",
+    sellerName: "BookNook · Delhi",
+    category: "books",
+  },
+  {
+    id: "t4",
+    brand: "Naseebo",
+    name: "Women's Floral Kurta Set",
+    price: "₹1,199",
+    oldPrice: "₹1,799",
+    discount: "33% OFF",
+    rating: 4,
+    reviewCount: "(210)",
+    // Woman in traditional Indian attire
+    image:
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&q=80&fit=crop",
+    imageBg: "#FDF2F8",
+    sellerName: "FashionFirst · Jaipur",
+    category: "fashion",
+  },
+  {
+    id: "t5",
+    brand: "Prestige",
+    name: "Induction Cooktop 2000W · 8 Presets",
+    price: "₹2,799",
+    oldPrice: "₹3,499",
+    discount: "19% OFF",
+    rating: 4,
+    reviewCount: "(1.8k)",
+    // Induction stove on kitchen counter
+    image:
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80&fit=crop",
+    imageBg: "#E2F5F4",
+    sellerName: "HomeFirst · Pune",
+    category: "home-kitchen",
   },
 ];
