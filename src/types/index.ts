@@ -12,6 +12,7 @@ export interface Category {
   icon: string;
   name: string;
   count: string;
+  to: string;
 }
 
 export interface MarqueeItem {
@@ -82,3 +83,52 @@ export interface Requirement {
   label: string;
   test: (value: string) => boolean;
 }
+
+export interface Product {
+  id: string;
+  brand: string;
+  name: string;
+  price: string;
+  oldPrice?: string;
+  discount?: string;
+  rating: number;
+  reviewCount: string;
+  imageBg?: string;
+  image: string;
+  sellerName?: string;
+  category: "electronics" | "fashion" | "home-kitchen" | "books" | "sports";
+}
+
+export interface SearchResult {
+  id: string;
+  name: string;
+  spec: string;
+  price: string;
+  matchScore: number;
+  image: string;
+  imageBg: string;
+}
+
+export interface Store {
+  id: string;
+  name: string;
+  initials: string;
+  avatarBg: string;
+  avatarColor: string;
+  location: string;
+  productCount: number;
+  tags: string[];
+  isVerified: boolean;
+  topProduct: {
+    name: string;
+    price: string;
+    image: string;
+  };
+}
+
+export interface FooterLink {
+  label: string;
+  to: string;
+}
+
+export type FooterLinks = Record<string, FooterLink[]>;
