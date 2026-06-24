@@ -4,11 +4,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormField from "@/components/common/FormField";
 import PasswordField from "@/components/common/PasswordField";
 import { loginSchema, type LoginSchema } from "@/lib/schemas/auth.schema";
+import { object } from "zod";
+
+const MOCK_CREDENTIALS = {
+  buyer: {
+    email: "buyer@vendora.in",
+    password: "Buyer@123",
+    name: "Sandeep K A",
+    initials: "SK",
+    isSeller: false,
+  },
+};
 
 export default function LoginForm() {
   const navigate = useNavigate();
 
-  const { control, handleSubmit } = useForm<LoginSchema>({
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: "onTouched",
     defaultValues: {
@@ -19,8 +35,17 @@ export default function LoginForm() {
 
   function onSubmit(data: LoginSchema) {
     // TODO: wire to POST /api/auth/login in Phase 3
-    console.log("Login submit:", data);
-    navigate("/");
+    const match = Object.values(MOCK_CREDENTIALS).find(
+      (cred) => cred.email === data.email && cred.password === data.password,
+    );
+    if (!match) {
+      setError("root", {
+        type: "manual",
+        message: "Invalid email or password. Please try again.",
+      });
+      return;
+    }
+    navigate("/home");
   }
 
   return (
@@ -81,8 +106,18 @@ export default function LoginForm() {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary btn-lg w-full mt-1">
-          Log in →
+        {errors.root && (
+          <p className="text-[13px] text-red-500 text-center -mt-1">
+            {errors.root.message}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn btn-primary btn-lg w-full mt-1"
+        >
+          {isSubmitting ? "Logging in…" : "Log in →"}
         </button>
       </form>
 
