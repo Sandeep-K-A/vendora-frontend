@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { transform } from "zod";
 
 const config: Config = {
   darkMode: "class",
@@ -89,11 +90,36 @@ const config: Config = {
           "0%": { transform: "translateX(0px)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        kenBurns: {
+          from: { transform: "scale(1)", opacity: "0.15" },
+          to: { transform: "scale(1.08)", opacity: "0.25" },
+        },
+        staggerFadeUp: {
+          from: { opacity: "0", transform: "translateY(12px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        slideUp: {
+          from: { opacity: "0", transform: "translateY(10px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        pulseDot: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.4" },
+        },
       },
       animation: {
         float: "float 5s ease-in-out infinite",
         "float-slow": "floatSlow 4s ease-in-out infinite",
         marquee: "marquee 26s linear infinite",
+        "ken-burns": "kenBurns 4s ease-out forwards",
+        "stagger-fade": "staggerFadeUp 0.5s ease-out forwards",
+        "slide-up": "slideUp 0.4s ease-out forwards",
+        "slide-up-slow": "slideUp 0.45s ease-out forwards",
+        "pulse-dot": "pulseDot 2s ease-in-out infinite",
+      },
+      boxShadow: {
+        card: "0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)",
+        card2: "0 2px 8px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.07)",
       },
     },
   },
