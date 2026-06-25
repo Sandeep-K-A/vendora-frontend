@@ -8,6 +8,7 @@ import AuthSkeleton from "./components/skeletons/AuthSkeleton";
 import HomeSkeleton from "./components/skeletons/HomeSkeleton";
 import CategorySkeleton from "./components/skeletons/CategorySkeleton";
 import ProductSkeleton from "./components/skeletons/ProductSkeleton";
+import CartSkeleton from "./components/skeletons/CartSkeleton";
 
 const Landing = lazy(() => import("@/pages/landing"));
 const Register = lazy(() => import("@/pages/auth/Register"));
@@ -15,6 +16,7 @@ const Login = lazy(() => import("@/pages/auth/Login"));
 const BuyerHome = lazy(() => import("@/pages/buyer/home"));
 const CategoryPage = lazy(() => import("@/pages/category"));
 const ProductPage = lazy(() => import("@/pages/product"));
+const CartPage = lazy(() => import("@/pages/cart"));
 
 export default function App() {
   return (
@@ -56,6 +58,14 @@ export default function App() {
             element={
               <Suspense fallback={<ProductSkeleton />}>
                 <ProductPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Suspense fallback={<CartSkeleton />}>
+                <CartPage />
               </Suspense>
             }
           />

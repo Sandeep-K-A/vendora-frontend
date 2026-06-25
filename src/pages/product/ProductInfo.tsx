@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
-import { ShoppingCart, Zap } from "lucide-react";
+import { Check, ShoppingCart, Zap } from "lucide-react";
 import type { Product, VariantDimension } from "@/types";
+import { useNavigate } from "react-router-dom";
+import { useCartStore } from "@/store/cartStore";
 
 interface ProductInfoProps {
   product: Product;
@@ -35,6 +37,21 @@ export default function ProductInfo({
     }
     return { price: product.price, oldPrice: product.oldPrice };
   }, [selectedVariants, product]);
+
+  const addItem = useCartStore((state) => state.addItem);
+  const navigate = useNavigate();
+  const [added, setAdded] = useState(false);
+
+  function handleAddToCart() {
+    addItem(product, selectedVariants);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  }
+
+  function handleBuyNow() {
+    addItem(product, selectedVariants);
+    navigate("/cart");
+  }
 
   function selectVariant(dimId: string, value: string, dim: VariantDimension) {
     setSelectedVariants((prev) => ({ ...prev, [dimId]: value }));
@@ -172,11 +189,24 @@ export default function ProductInfo({
 
       {/* CTA buttons */}
       <div className="flex gap-3 mt-1">
-        <button className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl bg-forest text-white font-semibold text-[14px] hover:bg-forest-2 transition-colors">
-          <ShoppingCart size={17} strokeWidth={2} />
-          Add to cart
+        <button
+          onClick={handleAddToCart}
+          className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl bg-forest text-white font-semibold text-[14px] hover:bg-forest-2 transition-colors"
+        >
+          {added ? (
+            <>
+              <Check size={17} strokeWidth={2.5} /> Added to cart
+            </>
+          ) : (
+            <>
+              <ShoppingCart size={17} strokeWidth={2} /> Add to cart
+            </>
+          )}
         </button>
-        <button className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gold text-white font-semibold text-[14px] hover:opacity-90 transition-opacity">
+        <button
+          onClick={handleBuyNow}
+          className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gold text-white font-semibold text-[14px] hover:opacity-90 transition-opacity"
+        >
           <Zap size={17} strokeWidth={2} />
           Buy now
         </button>

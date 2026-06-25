@@ -198,3 +198,20 @@ export interface CategoryConfig {
   slug: string;
   subcategories: Subcategory[];
 }
+
+export interface CartItem {
+  product: Product;
+  selectedVariants: Record<string, string>;
+  quantity: number;
+  cartItemId: string;
+}
+
+export interface CartStore {
+  items: CartItem[];
+  addItem: (product: Product, selectedVariants: Record<string, string>) => void;
+  removeItem: (cartItemId: string) => void;
+  updateQuantity: (cartItemId: string, quantity: number) => void;
+  clearCart: () => void;
+  totalItems: number;
+  totalPrice: number;
+}
