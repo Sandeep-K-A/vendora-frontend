@@ -3,6 +3,10 @@ import LoginForm from "./LoginForm";
 import { LOGIN_FEATURES } from "@/constants";
 
 export default function Login() {
+  alert(
+    "Form Validation is done but, new registration not stored use: email:buyer@vendora.in , password:Buyer@123",
+  );
+
   return (
     <div
       className="

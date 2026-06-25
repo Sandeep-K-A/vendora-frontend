@@ -20,9 +20,8 @@ export default function HeroSection() {
     <section className="w-full bg-white border-b border-line">
       <div className="max-w-[1240px] mx-auto px-4 lg:px-8 py-4 lg:py-6">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] lg:grid-cols-[1fr_300px] gap-3 lg:gap-4">
-          {/* ── Large panel — displayegory rotator ── */}
           <div className="relative overflow-hidden rounded-2xl min-h-[420px] md:min-h-[520px] lg:min-h-[560px]">
-            {/* Ken Burns background image — AnimatePresence swaps on key change */}
+            {/* Ken Burns background image*/}
             <AnimatePresence mode="sync">
               <motion.img
                 key={`bg-${active}`}
