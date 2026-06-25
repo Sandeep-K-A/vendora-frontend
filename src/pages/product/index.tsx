@@ -87,19 +87,6 @@ export default function ProductPage() {
         {/* Tabs — full width below */}
         <ProductTabs product={product} />
       </div>
-
-      {/* ── Mobile sticky CTA bar ── */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[300] bg-white border-t border-line px-4 py-3 flex gap-3">
-        <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border-[1.5px] border-forest text-forest font-semibold text-[13.5px]">
-          <ShoppingCart size={16} strokeWidth={2} />
-          Add to cart
-        </button>
-        <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gold text-white font-semibold text-[13.5px]">
-          <Zap size={16} strokeWidth={2} />
-          Buy now
-        </button>
-      </div>
-
       {/* Bottom padding on mobile*/}
       <div className="lg:hidden h-20" />
     </>
