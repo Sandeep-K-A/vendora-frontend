@@ -16,6 +16,7 @@ import type {
   Store,
   SearchResult,
   FooterLinks,
+  Address,
 } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -776,5 +777,31 @@ export const BROWSE_CATEGORIES = [
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&fit=crop&crop=center",
     overlay: "from-green-950/80 via-green-900/50 to-green-800/20",
     accent: "#6EE7B7",
+  },
+];
+
+export const MOCK_ADDRESSES: Address[] = [
+  {
+    id: "addr-1",
+    label: "Home",
+    name: "Sandeep K A",
+    line1: "Flat 4B, Green Valley Apartments",
+    line2: "Near Lulu Mall",
+    city: "Kochi",
+    state: "Kerala",
+    pincode: "682021",
+    phone: "+91 98765 43210",
+    isDefault: true,
+  },
+  {
+    id: "addr-2",
+    label: "Work",
+    name: "Sandeep K A",
+    line1: "Brototype, Chakkaraparambu",
+    city: "Ernakulam",
+    state: "Kerala",
+    pincode: "682021",
+    phone: "+91 98765 43210",
+    isDefault: false,
   },
 ];

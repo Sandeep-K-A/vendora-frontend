@@ -30,7 +30,7 @@ export default function TrendingProductsSection() {
           </motion.h2>
         </motion.div>
 
-        {/* Product grid — 5 columns desktop, 3 tablet, 2 mobile */}
+        {/* Product grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
           {MOCK_PRODUCTS.map((product, i) => (
             <motion.div

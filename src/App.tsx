@@ -10,6 +10,7 @@ import CategorySkeleton from "./components/skeletons/CategorySkeleton";
 import ProductSkeleton from "./components/skeletons/ProductSkeleton";
 import CartSkeleton from "./components/skeletons/CartSkeleton";
 import OrdersSkeleton from "./components/skeletons/OrdersSkeleton";
+import ProfileSkeleton from "./components/skeletons/ProfileSkeleton";
 
 const Landing = lazy(() => import("@/pages/landing"));
 const Register = lazy(() => import("@/pages/auth/Register"));
@@ -19,6 +20,7 @@ const CategoryPage = lazy(() => import("@/pages/category"));
 const ProductPage = lazy(() => import("@/pages/product"));
 const CartPage = lazy(() => import("@/pages/cart"));
 const OrdersPage = lazy(() => import("@/pages/orders"));
+const ProfilePage = lazy(() => import("@/pages/profile"));
 
 export default function App() {
   return (
@@ -76,6 +78,14 @@ export default function App() {
             element={
               <Suspense fallback={<OrdersSkeleton />}>
                 <OrdersPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<ProfileSkeleton />}>
+                <ProfilePage />
               </Suspense>
             }
           />

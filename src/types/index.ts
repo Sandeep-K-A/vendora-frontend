@@ -264,3 +264,22 @@ export interface Order {
   estimatedDelivery?: string;
   tracking?: TrackingStep[];
 }
+
+export interface ProfileData {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+export interface Address {
+  id: string;
+  label: string;
+  name: string;
+  line1: string;
+  line2?: string;
+  city: string;
+  state: string;
+  pincode: string;
+  phone: string;
+  isDefault: boolean;
+}
