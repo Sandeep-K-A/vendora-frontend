@@ -215,3 +215,52 @@ export interface CartStore {
   totalItems: number;
   totalPrice: number;
 }
+
+export type OrderStatus =
+  | "pending"
+  | "confirmed"
+  | "shipped"
+  | "out_for_delivery"
+  | "delivered"
+  | "cancelled";
+
+export interface OrderItem {
+  product: Product;
+  selectedVariants: Record<string, string>;
+  quantity: number;
+  price: string;
+}
+
+export interface TrackingStep {
+  status: string;
+  label: string;
+  timestamp: string;
+  completed: boolean;
+  current: boolean;
+}
+
+export interface StatusConfig {
+  label: string;
+  color: string;
+  bg: string;
+  dot: string;
+}
+
+export interface Order {
+  id: string;
+  placedAt: string;
+  status: OrderStatus;
+  items: OrderItem[];
+  total: string;
+  deliveryAddress: {
+    name: string;
+    line1: string;
+    line2?: string;
+    city: string;
+    state: string;
+    pincode: string;
+  };
+  paymentMethod: string;
+  estimatedDelivery?: string;
+  tracking?: TrackingStep[];
+}
