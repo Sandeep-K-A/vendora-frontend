@@ -6,7 +6,7 @@ import ProductGrid from "./ProductGrid";
 import FilterSidebar from "@/layouts/category/FilterSiderbar";
 import SortBar from "@/layouts/category/SortBar";
 import { CATEGORIES, getFilters } from "@/constants/category/categoryFilters";
-import { MOCK_PRODUCTS } from "@/constants/category/categoryFilters";
+import { MOCK_PRODUCTS } from "@/constants/products/mockProductDetails";
 
 export default function CategoryPage() {
   const { slug } = useParams<{ slug: string }>();

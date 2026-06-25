@@ -84,6 +84,32 @@ export interface Requirement {
   test: (value: string) => boolean;
 }
 
+export interface VariantOption {
+  value: string;
+  label: string;
+  price?: string;
+  oldPrice?: string;
+  inStock: boolean;
+  image?: string;
+}
+
+export interface VariantDimension {
+  id: string;
+  label: string;
+  options: VariantOption[];
+}
+
+export interface Review {
+  id: string;
+  author: string;
+  initials: string;
+  rating: number;
+  title: string;
+  body: string;
+  date: string;
+  verified: boolean;
+}
+
 export interface Product {
   id: string;
   brand: string;
@@ -95,8 +121,16 @@ export interface Product {
   reviewCount: string;
   imageBg?: string;
   image: string;
+  images?: string[];
   sellerName?: string;
   category: "electronics" | "fashion" | "home-kitchen" | "books" | "sports";
+  subcategory?: string;
+  specs?: Record<string, string>;
+  variants?: VariantDimension[];
+  reviews?: Review[];
+  description?: string;
+  highlights?: string[];
+  inBox?: string[];
 }
 
 export interface SearchResult {

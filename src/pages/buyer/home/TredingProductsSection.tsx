@@ -1,4 +1,4 @@
-import { TRENDING_PRODUCTS } from "@/constants";
+import { MOCK_PRODUCTS } from "@/constants/products/mockProductDetails";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import ProductCard from "@/components/common/ProductCard";
@@ -32,7 +32,7 @@ export default function TrendingProductsSection() {
 
         {/* Product grid — 5 columns desktop, 3 tablet, 2 mobile */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
-          {TRENDING_PRODUCTS.map((product, i) => (
+          {MOCK_PRODUCTS.map((product, i) => (
             <motion.div
               key={product.id}
               variants={fadeUp}

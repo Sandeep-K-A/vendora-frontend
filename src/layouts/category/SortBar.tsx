@@ -1,7 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { SlidersHorizontal } from "lucide-react";
 import { SORT_OPTIONS } from "@/constants/category/categoryFilters";
-import { button, div } from "framer-motion/client";
 
 interface SortBarProps {
   totalResults: number;

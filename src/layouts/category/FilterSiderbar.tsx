@@ -2,7 +2,6 @@ import { X, ChevronDown } from "lucide-react";
 import type { FilterConfig, Subcategory } from "@/types";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import { button, div } from "framer-motion/client";
 import PriceRangeFilter from "@/components/common/PriceRangeFilter";
 
 interface FilterSidebarProps {
