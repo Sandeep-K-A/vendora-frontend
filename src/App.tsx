@@ -5,11 +5,13 @@ import LandingSkeleton from "./components/skeletons/LandingSkeleton";
 import AuthSkeleton from "./components/skeletons/AuthSkeleton";
 import HomeSkeleton from "./components/skeletons/HomeSkeleton";
 import { lazy, Suspense } from "react";
+import CategorySkeleton from "./components/skeletons/CategorySkeleton";
 
 const Landing = lazy(() => import("@/pages/landing"));
 const Register = lazy(() => import("@/pages/auth/Register"));
 const Login = lazy(() => import("@/pages/auth/Login"));
 const BuyerHome = lazy(() => import("@/pages/buyer/home"));
+const CategoryPage = lazy(() => import("@/pages/category"));
 
 export default function App() {
   return (
@@ -33,6 +35,14 @@ export default function App() {
           element={
             <Suspense fallback={<HomeSkeleton />}>
               <BuyerHome />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/category/:slug"
+          element={
+            <Suspense fallback={<CategorySkeleton />}>
+              <CategoryPage />
             </Suspense>
           }
         />

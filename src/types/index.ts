@@ -132,3 +132,35 @@ export interface FooterLink {
 }
 
 export type FooterLinks = Record<string, FooterLink[]>;
+
+export type FilterType =
+  | "price"
+  | "rating"
+  | "brand"
+  | "checkbox"
+  | "availability";
+
+export interface FilterOption {
+  label: string;
+  value: string;
+}
+
+export interface FilterConfig {
+  id: string;
+  type: FilterType;
+  label: string;
+  options?: FilterOption[];
+}
+
+export interface Subcategory {
+  label: string;
+  value: string;
+  icon: string;
+  count: number;
+}
+
+export interface CategoryConfig {
+  label: string;
+  slug: string;
+  subcategories: Subcategory[];
+}
