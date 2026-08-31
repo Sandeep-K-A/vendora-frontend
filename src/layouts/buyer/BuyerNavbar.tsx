@@ -11,21 +11,29 @@ import {
   Store,
   User,
 } from "lucide-react";
+import { useAuthStore } from "@/store/authStore";
+import { useLogout } from "@/hooks/useLogout";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 
-interface BuyerNavbarProps {
-  cartCount?: number;
-  userName?: string;
-  userInitials?: string;
-  isSeller?: boolean;
+function getInitials(fullname: string) {
+  return fullname
+    .trim()
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }
 
-export default function BuyerNavbar({
-  cartCount = 0,
-  userName = "Sandeep K A",
-  userInitials = "SK",
-  isSeller = false,
-}: BuyerNavbarProps) {
+export default function BuyerNavbar() {
   const navigate = useNavigate();
+  const user = useAuthStore((state) => state.user);
+  const isBootstrapped = useAuthStore((state) => state.isBootstrapped);
+  const logout = useLogout();
+
+  const isVendor = user?.isVendor;
+  const userName = user?.fullname;
+  const userInitials = getInitials(user?.fullname ?? "");
 
   //   search
   const [query, setQuery] = useState("");
@@ -36,6 +44,9 @@ export default function BuyerNavbar({
   //   Profile
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
+
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     function handler(e: MouseEvent) {
@@ -87,12 +98,17 @@ export default function BuyerNavbar({
     navigate(`/product/${result.id}`);
   }
 
+  async function handleConfirmLogout() {
+    setIsLoggingOut(true);
+    await logout();
+  }
+
   return (
     <header className="sticky top-0 z-[200] bg-white border-b border-line">
       <div className="max-w-[1240px] px-3 mx-auto lg:px-8 flex items-center h-[62px] gap-2 lg:gap-8">
         {/* logo */}
         <Link
-          to="/home"
+          to="/"
           aria-label="Vendora — go to homepage"
           className="flex items-center gap-2.5 font-head text-xl font-bold text-ink flex-shrink-0"
         >
@@ -148,30 +164,38 @@ export default function BuyerNavbar({
             <span className="hidden lg:block text-[11px] text-ink-3 group-hover:text-ink-2 transition-colors leading-none">
               Cart
             </span>
-            {cartCount > 0 && (
-              <span className="absolute top-1 right-1.5 w-[15px] h-[15px] rounded-full bg-gold text-white text-[8.5px] font-bold flex items-center justify-center border-2 border-white">
-                {cartCount > 9 ? "9+" : cartCount}
-              </span>
-            )}
+            <span className="absolute top-1 right-1.5 w-[15px] h-[15px] rounded-full bg-gold text-white text-[8.5px] font-bold flex items-center justify-center border-2 border-white">
+              0
+            </span>
           </Link>
 
           {/* Profile */}
           <div ref={profileRef} className="relative">
-            <button
-              onClick={() => setProfileOpen((p) => !p)}
-              className="flex flex-col items-center gap-0.5 px-2 lg:px-3 py-1.5 rounded-lg hover:bg-bg transition-colors duration-150 group"
-            >
-              <User
-                className="w-[22px] h-[22px] text-ink-2 group-hover:text-ink transition-colors"
-                strokeWidth={1.7}
-              />
-              <span className="hidden lg:block text-[11px] text-ink-3 group-hover:text-ink-2 transition-colors leading-none">
-                Profile
-              </span>
-            </button>
+            {!isBootstrapped ? (
+              // Brief local skeleton — only while the silent-refresh
+              // check is in flight. Doesn't block anything else on the
+              // page; just avoids showing "Login" then flashing to a
+              // profile dropdown a moment later (or vice versa).
+              <div className="flex flex-col items-center gap-0.5 px-2 lg:px-3 py-1.5">
+                <div className="w-[22px] h-[22px] rounded-full bg-gray-200 animate-pulse" />
+              </div>
+            ) : (
+              <button
+                onClick={() => setProfileOpen((p) => !p)}
+                className="flex flex-col items-center gap-0.5 px-2 lg:px-3 py-1.5 rounded-lg hover:bg-bg transition-colors duration-150 group"
+              >
+                <User
+                  className="w-[22px] h-[22px] text-ink-2 group-hover:text-ink transition-colors"
+                  strokeWidth={1.7}
+                />
+                <span className="hidden lg:block text-[11px] text-ink-3 group-hover:text-ink-2 transition-colors leading-none">
+                  Profile
+                </span>
+              </button>
+            )}
 
             {/* Profile dropdown */}
-            {profileOpen && (
+            {isBootstrapped && profileOpen && (
               <div className="absolute top-[calc(100%+6px)] right-0 w-[220px] bg-white border border-line rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.08),0_20px_48px_rgba(0,0,0,0.07)] overflow-hidden z-[300]">
                 {userName ? (
                   <>
@@ -186,7 +210,7 @@ export default function BuyerNavbar({
                             {userName}
                           </div>
                           <div className="text-[11.5px] text-ink-3 leading-tight">
-                            Buyer account
+                            {isVendor ? "Seller account" : "Buyer account"}
                           </div>
                         </div>
                       </div>
@@ -210,7 +234,7 @@ export default function BuyerNavbar({
 
                     {/* Seller section */}
                     <div className="border-t border-line py-1.5">
-                      {isSeller ? (
+                      {isVendor ? (
                         <DropItem
                           icon={LayoutDashboard}
                           label="Seller dashboard"
@@ -231,7 +255,8 @@ export default function BuyerNavbar({
                     <div className="border-t border-line py-1.5">
                       <button
                         onClick={() => {
-                          setProfileOpen(false); /* TODO: logout */
+                          setProfileOpen(false);
+                          setShowLogoutConfirm(true);
                         }}
                         className="w-full flex items-center gap-3 px-4 py-2.5 text-[13.5px] text-ink-2 hover:bg-bg hover:text-ink transition-colors duration-100"
                       >
@@ -266,6 +291,15 @@ export default function BuyerNavbar({
           </div>
         </div>
       </div>
+      <ConfirmDialog
+        isOpen={showLogoutConfirm}
+        title="Sign out of Vendora?"
+        description="You'll need to log in again to access your account."
+        confirmLabel="Sign out"
+        isLoading={isLoggingOut}
+        onConfirm={handleConfirmLogout}
+        onCancel={() => setShowLogoutConfirm(false)}
+      />
     </header>
   );
 }

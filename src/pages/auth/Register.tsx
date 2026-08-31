@@ -3,9 +3,9 @@ import RegisterForm from "./RegisterForm";
 import { REGISTER_FEATURES } from "@/constants";
 
 export default function Register() {
-  alert(
-    "Form Validation is done but, new registration not stored use: email:buyer@vendora.in , password:Buyer@123",
-  );
+  // alert(
+  //   "Form Validation is done but, new registration not stored use: email:buyer@vendora.in , password:Buyer@123",
+  // );
 
   return (
     <div

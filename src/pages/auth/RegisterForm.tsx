@@ -6,35 +6,61 @@ import PasswordField from "@/components/common/PasswordField";
 import PasswordRequirements from "@/components/common/PasswordRequirements";
 import CheckboxField from "@/components/common/CheckboxField";
 import { registerSchema, type RegisterSchema } from "@/lib/schemas/auth.schema";
+import { useState } from "react";
+import { registerUser } from "@/lib/api/auth";
+import { isAxiosError } from "axios";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const intentIsSeller = searchParams.get("intent") === "seller";
 
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { control, handleSubmit, watch } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     mode: "onTouched",
     defaultValues: {
-      name: "",
+      fullname: "",
       email: "",
       password: "",
       confirmPassword: "",
       wantsToSell: intentIsSeller,
-      agreedToTerms: undefined,
+      agreedToTerms: false,
     },
   });
 
   const passwordValue = watch("password");
   const wantsToSell = watch("wantsToSell");
 
-  function onSubmit(data: RegisterSchema) {
-    // TODO: wire to POST /api/auth/register in Phase 3
-    console.log("Register submit:", data);
-    if (data.wantsToSell) {
-      navigate("/seller/onboarding");
-    } else {
-      navigate("/");
+  async function onSubmit(data: RegisterSchema) {
+    setServerError(null);
+    setIsSubmitting(true);
+    try {
+      const result = await registerUser({
+        fullname: data.fullname,
+        email: data.email,
+        password: data.password,
+      });
+      console.log("registerUser() returned:", result);
+
+      const { email, emailSent } = result;
+
+      const otpContext = { email, emailSent, wantsToSell: data.wantsToSell };
+
+      sessionStorage.setItem(
+        "pendingOtpVerification",
+        JSON.stringify(otpContext),
+      );
+      navigate("/verify-otp", { state: otpContext });
+    } catch (err) {
+      const message = isAxiosError(err)
+        ? (err.response?.data?.message ?? "Registration failed")
+        : "Something went wrong";
+      setServerError(message);
+    } finally {
+      setIsSubmitting(false);
     }
   }
   return (
@@ -50,8 +76,14 @@ export default function RegisterForm() {
         className="flex flex-col gap-4"
         noValidate
       >
+        {serverError && (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            {serverError}
+          </div>
+        )}
+
         <Controller
-          name="name"
+          name="fullname"
           control={control}
           render={({ field, fieldState }) => (
             <FormField
@@ -178,10 +210,16 @@ export default function RegisterForm() {
           )}
         />
 
-        <button type="submit" className="btn btn-primary btn-lg w-full mt-1">
-          {wantsToSell
-            ? "Create account & set up store →"
-            : "Create free account →"}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn btn-primary btn-lg w-full mt-1 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isSubmitting
+            ? "Creating account..."
+            : wantsToSell
+              ? "Create account & set up store →"
+              : "Create free account →"}
         </button>
       </form>
 

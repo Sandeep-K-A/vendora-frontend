@@ -3,10 +3,10 @@ import { z } from "zod";
 // RegisterSchema
 export const registerSchema = z
   .object({
-    name: z
+    fullname: z
       .string()
-      .min(5, "Name must be at least 5 characters")
-      .max(15, "Name must be less than 15 characters")
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name must be less than 50 characters")
       .regex(/^[a-zA-Z]/, "Name cannot start with a space")
       .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"),
 
@@ -18,6 +18,7 @@ export const registerSchema = z
     password: z
       .string()
       .min(8, "At least 8 characters required")
+      .regex(/[a-z]/, "Must contain at least one lowercase letter")
       .regex(/[A-Z]/, "Must contain at least one uppercase letter")
       .regex(/[0-9]/, "Must contain at least one number")
       .regex(/[^A-Za-z0-9]/, "Must contain at least one special character"),
@@ -26,7 +27,7 @@ export const registerSchema = z
 
     wantsToSell: z.boolean(),
 
-    agreedToTerms: z.literal(true, {
+    agreedToTerms: z.boolean().refine((val) => val === true, {
       error: "You must agree to the terms to continue",
     }),
   })
@@ -45,5 +46,32 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
+//Forgot Password Schema
+export const forgotPasswordSchema = z.object({
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Enter a valid email address"),
+});
+
+export const resetPasswordSchema = z
+  .object({
+    newPassword: z
+      .string()
+      .min(8, "At least 8 characters required")
+      .regex(/[a-z]/, "Must contain at least one lowercase letter")
+      .regex(/[A-Z]/, "Must contain at least one uppercase letter")
+      .regex(/[0-9]/, "Must contain at least one number")
+      .regex(/[^A-Za-z0-9]/, "Must contain at least one special character"),
+
+    confirmNewPassword: z.string().min(1, "Please confirm your password"),
+  })
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
 export type RegisterSchema = z.infer<typeof registerSchema>;
 export type LoginSchema = z.infer<typeof loginSchema>;
+export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
+export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
