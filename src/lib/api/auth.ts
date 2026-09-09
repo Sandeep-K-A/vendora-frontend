@@ -45,7 +45,8 @@ export async function resetPassword(token: string, newPassword: string) {
 
 export async function refreshSession() {
   const { data } = await api.post("/auth/refresh");
-  return data.data.user as { accessToken: string; user: User };
+  console.log(data, ",,,,,,,,,,,,,,,,,,,,,,,");
+  return data.data as { accessToken: string; user: User };
 }
 
 export async function getMe() {

@@ -233,7 +233,10 @@ export default function ProfilePage() {
               </button>
 
               {/* Seller account */}
-              <button className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-bg transition-colors group">
+              <button
+                className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-bg transition-colors group"
+                onClick={() => navigate("/seller/onboarding")}
+              >
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-forest-xxl flex items-center justify-center flex-shrink-0">
                     <Store size={15} strokeWidth={2} className="text-forest" />

@@ -24,14 +24,26 @@ api.interceptors.request.use((config) => {
 
 let isRefreshing = false;
 let refreshSubscribers: ((token: string) => void)[] = [];
+let refreshFailedSubscribers: ((error: unknown) => void)[] = [];
 
-function subscribeTokenRefresh(callback: (token: string) => void) {
-  refreshSubscribers.push(callback);
+function subscribeTokenRefresh(
+  onSuccess: (token: string) => void,
+  onFailure: (error: unknown) => void,
+) {
+  refreshSubscribers.push(onSuccess);
+  refreshFailedSubscribers.push(onFailure);
 }
 
 function onRefreshed(token: string) {
   refreshSubscribers.forEach((callback) => callback(token));
   refreshSubscribers = [];
+  refreshFailedSubscribers = [];
+}
+
+function onRefreshFailed(error: unknown) {
+  refreshFailedSubscribers.forEach((callback) => callback(error));
+  refreshSubscribers = [];
+  refreshFailedSubscribers = [];
 }
 
 api.interceptors.response.use(
@@ -39,17 +51,28 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    const isRefreshCall = originalRequest?.url?.includes("/auth/refresh");
+
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !isRefreshCall
+    ) {
       originalRequest._retry = true;
 
       const wasAuthenticated = useAuthStore.getState().isAuthenticated;
 
       if (isRefreshing) {
-        return new Promise((resolve) => {
-          subscribeTokenRefresh((newToken) => {
-            originalRequest.headers.Authorization = `Bearer ${newToken}`;
-            resolve(api(originalRequest));
-          });
+        return new Promise((resolve, reject) => {
+          subscribeTokenRefresh(
+            (newToken) => {
+              originalRequest.headers.Authorization = `Bearer ${newToken}`;
+              resolve(api(originalRequest));
+            },
+            (refreshError) => {
+              reject(refreshError);
+            },
+          );
         });
       }
 
@@ -70,11 +93,8 @@ api.interceptors.response.use(
       } catch (refreshError) {
         isRefreshing = false;
         useAuthStore.getState().clearAuth();
+        onRefreshFailed(refreshError);
 
-        // Only force-redirect if this user WAS authenticated and their
-        // session genuinely expired mid-use. A visitor who was never
-        // logged in shouldn't be redirected just because some
-        // background request happened to need auth.
         if (wasAuthenticated) {
           window.location.href = "/login";
         }

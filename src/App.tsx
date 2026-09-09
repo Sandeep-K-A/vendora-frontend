@@ -14,6 +14,8 @@ import ProfileSkeleton from "./components/skeletons/ProfileSkeleton";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import AuthProvider from "./providers/AuthProvider";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import SellerLayout from "./layouts/seller/SellerLayout";
 
 const Landing = lazy(() => import("@/pages/landing"));
 const Register = lazy(() => import("@/pages/auth/Register"));
@@ -25,6 +27,15 @@ const CartPage = lazy(() => import("@/pages/cart"));
 const OrdersPage = lazy(() => import("@/pages/orders"));
 const ProfilePage = lazy(() => import("@/pages/profile"));
 const VerifyOtp = lazy(() => import("@/pages/auth/VerifyOtp"));
+const SellerOnboarding = lazy(
+  () => import("@/pages/seller/onboarding/SellerOnboarding"),
+);
+const StoreOverview = lazy(
+  () => import("@/pages/seller/dashboard/overview/StoreOverview"),
+);
+const ProductsList = lazy(
+  () => import("@/pages/seller/dashboard/products/ProductsList"),
+);
 
 export default function App() {
   return (
@@ -116,6 +127,28 @@ export default function App() {
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+
+          <Route
+            path="/seller/onboarding"
+            element={
+              <ProtectedRoute redirectIfVendor>
+                <Suspense fallback={<AuthSkeleton />}>
+                  <SellerOnboarding />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/seller/dashboard"
+            element={
+              <ProtectedRoute requireVendor>
+                <SellerLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<StoreOverview />} />
+            <Route path="products" element={<ProductsList />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </>

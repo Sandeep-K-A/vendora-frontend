@@ -10,17 +10,39 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const setAuth = useAuthStore((state) => state.setAuth);
   const setBootstrapped = useAuthStore((state) => state.setBootstrapped);
 
+  // useEffect(() => {
+  //   async function bootstrap() {
+  //     try {
+  //       const { user, accessToken } = await refreshSession();
+  //       setAuth(user, accessToken);
+  //     } catch {
+  //       // No valid session — expected default state, nothing to do.
+  //     } finally {
+  //       setBootstrapped();
+  //     }
+  //   }
+  //   bootstrap();
+  // }, [setAuth, setBootstrapped]);
   useEffect(() => {
     async function bootstrap() {
+      console.log("BOOTSTRAP START");
+
       try {
+        console.log("Calling refreshSession...");
+
         const { user, accessToken } = await refreshSession();
+
+        console.log("refreshSession SUCCESS", user);
+
         setAuth(user, accessToken);
-      } catch {
-        // No valid session — expected default state, nothing to do.
+      } catch (error) {
+        console.log("refreshSession FAILED", error);
       } finally {
+        console.log("BOOTSTRAP FINISHED");
         setBootstrapped();
       }
     }
+
     bootstrap();
   }, [setAuth, setBootstrapped]);
 
