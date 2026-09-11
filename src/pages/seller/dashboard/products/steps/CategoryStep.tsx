@@ -1,6 +1,6 @@
 import { Controller, type Control } from "react-hook-form";
 import SectionHeading from "@/components/common/SectionHeading";
-import type { Category } from "@/lib/api/category";
+import type { Category } from "@/types/category";
 import type { ProductSchema } from "@/lib/schemas/product.schema";
 
 export default function CategoryStep({
