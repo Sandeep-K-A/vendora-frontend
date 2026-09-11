@@ -1,7 +1,14 @@
+export interface SpecField {
+  key: string;
+  label: string;
+  required: boolean;
+}
+
 export interface Subcategory {
   _id: string;
   name: string;
   slug: string;
+  specFields: SpecField[];
 }
 
 export interface Category {

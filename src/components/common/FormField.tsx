@@ -3,7 +3,7 @@ import type { ReactFormState } from "react-dom/client";
 interface FormFieldProps {
   label: string;
   name: string;
-  type?: "text" | "email" | "tel";
+  type?: "text" | "email" | "tel" | "number";
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;

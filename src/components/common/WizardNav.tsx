@@ -5,6 +5,8 @@ export default function WizardNav({
   onNext,
   onBack,
   onSubmit,
+  submitLabel = "Submit",
+  submittingLabel = "Submitting...",
 }: {
   step: number;
   isLastStep: boolean;
@@ -12,6 +14,8 @@ export default function WizardNav({
   onNext: () => void;
   onBack: () => void;
   onSubmit: () => void;
+  submitLabel?: string;
+  submittingLabel?: string;
 }) {
   return (
     <div className="flex items-center justify-between mt-8 pt-6 border-t border-line">
@@ -34,7 +38,7 @@ export default function WizardNav({
           disabled={isSubmitting}
           className="btn btn-primary px-7 py-2.5 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? "Creating store..." : "Create store"}
+          {isSubmitting ? submittingLabel : submitLabel}
         </button>
       ) : (
         <button

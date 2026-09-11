@@ -36,6 +36,9 @@ const StoreOverview = lazy(
 const ProductsList = lazy(
   () => import("@/pages/seller/dashboard/products/ProductsList"),
 );
+const AddProduct = lazy(
+  () => import("@/pages/seller/dashboard/products/AddProduct"),
+);
 
 export default function App() {
   return (
@@ -148,6 +151,7 @@ export default function App() {
           >
             <Route index element={<StoreOverview />} />
             <Route path="products" element={<ProductsList />} />
+            <Route path="products/new" element={<AddProduct />} />
           </Route>
         </Routes>
       </AuthProvider>

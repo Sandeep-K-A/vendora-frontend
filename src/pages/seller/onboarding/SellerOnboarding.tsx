@@ -73,7 +73,7 @@ export default function SellerOnboarding() {
       if (accessToken) setAuth(user, accessToken);
       navigate("/seller/dashboard", {
         replace: true,
-        state: { justCreated: true, storeStatus: store.status },
+        state: { justCreated: true, storeStatus: store.verificationStatus },
       });
     } catch (err) {
       const message = isAxiosError(err)
@@ -134,6 +134,8 @@ export default function SellerOnboarding() {
               onNext={handleNext}
               onBack={handleBack}
               onSubmit={onSubmit}
+              submitLabel="Create store"
+              submittingLabel="Creating store..."
             />
           </form>
         </div>
